@@ -172,7 +172,7 @@ for s in reversed(range(s_max+1)):
        T = [T[i] for i in argsort(val_losses)[0:int(n_i/eta)]]
 ```
 
-Podemos ver el ejemplo completo en el siguiente<a href="https://github.com/PeepData/hyperband" target="_blank">repositorio</a>.
+Podemos ver el ejemplo completo en el siguiente <a href="https://github.com/PeepData/hyperband" target="_blank">repositorio</a>.
 
 Vale la pena mencionar que existen varias implementaciones robustas para utilizar Hyperdband con todas las ventajas que nos ofrece. Dos sumamente recomendables son las desarrolladas por <a href="https://docs.ray.io/en/master/tune/index.html" target="_blank">Ray Tune</a> y <a href="https://automl.github.io/HpBandSter/ " target="_blank">HpBandSter</a>.
 
