@@ -8,8 +8,8 @@ featured: false
 hidden: true
 comments: false
 image: assets/images/2_post_img_1.png
-beforetoc: "<p>En estos últimos años los algoritmos de <b>Machine Learning(ML)</b> han resuelto con éxito una amplia variedad de tareas alcanzando el state of the art en diversas áreas. Esto no sólo se debe al desarrollo de nuevos algoritmos, más potentes y más grandes, en varias ocasiones la selección de buenos hiperparámetros ha contribuido a esta conquista.</p>
-Sin embargo, seleccionar hiperparámetros de una manera precisa no es una tarea para nada trivial, y en consecuencia, existen distintas técnicas enfocadas a resolver este tipo de desafío. En este artículo te presentaré a una de estas: <b>Hyperband</b>.
+beforetoc: "<p>En estos últimos años los algoritmos de <b>Machine Learning (ML)</b> han resuelto con éxito una amplia variedad de tareas alcanzando el state of the art en diversas áreas. Esto no solamente se debe al desarrollo de nuevos algoritmos (más potentes y más grandes), también en varias ocasiones, la selección de buenos hiperparámetros ha contribuido a esta conquista.</p>
+Sin embargo, seleccionar hiperparámetros de una manera precisa no es una tarea para nada trivial, y en consecuencia, existen distintas técnicas enfocadas a resolver este tipo de desafío. En artículo nos adentraremos en una de estas: <b>Hyperband</b>.
 "
 toc: true
 ---
@@ -20,7 +20,7 @@ toc: true
 Definimos como hiperparámetros a todos los parámetros de un modelo que no se actualizan durante el entrenamiento y que se utilizan para configurarlo. En la actualidad, una buena proporción de estos modelos tienen múltiples, diversos y complejos hiperparámetros que se deben ajustar para alcanzar un mejor
 rendimiento y esta tarea implica un gran desafío.
 
-Conceptualmente, el ajuste de hiperparémetros se puede plantear como un problema de optimización, donde el objetivo es encontrar una configuración de hiperparámetros para un modelo determinado que nos permita obtener el mayor rendimiento posible sobre un conjunto de validación. Al método que se utiliza para resolver este tipo de problema se lo conoce como **Hyperparameter Optimization(HPO) o Hyperparameter Tuning**.
+Conceptualmente, el ajuste de hiperparémetros se puede plantear como un problema de optimización, donde el objetivo es encontrar una configuración de hiperparámetros para un modelo determinado que nos permita obtener el mayor rendimiento posible sobre un conjunto de validación. Al método que se utiliza para resolver este tipo de problema se lo conoce como **Hyperparameter Optimization (HPO) o Hyperparameter Tuning**.
 
 Matemáticamente, podemos formularlo del modo siguiente: Dado que el rendimiento que obtiene un modelo sobre un conjunto de validación puede ser modelado como una función **f : X $$ \to $$ R** de sus hiperparámetros **x ∈ X** (f puede ser cualquier función de error, por ejemplo el RMSE en un problema de regresión o el AUC Score para un problema de clasificación). El problema que deber resolver la **HPO** es encontrar **x** tal que:
 <center>$$\mathbf {x* ∈ arg min_{x∈X} f(x)}$$</center>
@@ -35,7 +35,7 @@ Hay varios puntos que este tipo de de optimización debe afrontar:
 
 ## Enfoques de HPO
 
-Se han propuestos varios enfoques para abordar el problema de **HPO**. Este árticulo no está focalizado en profundizar a todos. Sin embargo, resumiremos brevemente los métodos más populares en efecto de tener un mayor entendimiento de cuales son las ventajas que nos proporciona **Hyperband** y cuales son las falencias que intentara suplir.
+Se han propuestos varios enfoques para abordar el problema de **HPO**. Este árticulo no está focalizado en profundizar a todos. Sin embargo, resumiremos brevemente los métodos más populares en efecto de tener un mayor entendimiento de cuales son las ventajas que nos proporciona **Hyperband** y cuales son las falencias que intentará suplir.
 
 {% include image.html url="/assets/images/2_post_img_3.png" description="Fig.2. Clasificación de los diferentes enfoques de HPO." %}
 
@@ -45,7 +45,7 @@ Se han propuestos varios enfoques para abordar el problema de **HPO**. Este árt
 
 Este enfoque posee ciertas desventajas. Por un lado, el número de configuraciones a evaluar <a href="https://en.wikipedia.org/wiki/Curse_of_dimensionality" target="_blank">crecerá exponencialmente</a> con respecto al número de hiperparámetros que se deban ajustar.
 
-Por otra parte, supongamos que nuestro modelo solo tiene dos hiperparametros a configurar, uno es muy importante para su correcto funcionamiento y el otro no. Cada uno tendrá 3 valores posibles y por ende nuestro espacio de búsqueda estará compuesto por 9 configuraciones diferentes en total.
+Por otra parte, supongamos que nuestro modelo solo tiene dos hiperparametros a configurar, uno es muy importante para su correcto funcionamiento y el otro no. Supongamos también que cada uno tiene 3 valores posibles y por ende nuestro espacio de búsqueda estará compuesto por 9 configuraciones diferentes en total.
 
 {% include image.html url="/assets/images/2_post_img_4.png" description="Fig.3. Representación a modo de ejemplo de Grid Search." %}
 
@@ -76,7 +76,7 @@ Entonces, supongamos que inicialmente seleccionemos dos configuraciones para ser
 
 Luego, la decisión de cuál será la siguiente configuración a evaluar sera tomada por la **función de adquisición**. Esta, intentará explorar aquellas zonas donde existe muy poca información y potencialmente podamos encontrarnos con buenas configuraciones.
 
-Finalmente, la configuración seleccionada por la función de adquisición se agregara al conjunto de configuraciones ya evaluadas, y nuevamente se ajustará el modelo sustituto. Se iterará tantas veces como sea necesario, y al final seleccionaremos el punto que minimice la función aproximada.
+Finalmente, la configuración seleccionada por la función de adquisición se agregará al conjunto de configuraciones ya evaluadas, y nuevamente se ajustará el modelo sustituto. Se iterará tantas veces como sea necesario, y al final seleccionaremos el punto que minimice la función aproximada.
 
 Si bien **BO** funciona muy bien en este tipo de optimizaciones, tiene una desventaja que no podemos dejar pasar y es que no se pueden paralelizar los recursos debido a que el proceso es secuencial. Además, las variantes más clásicas de **BO** también tendrán problema con espacios de búsquedas de altas dimensiones.
 
@@ -172,9 +172,9 @@ for s in reversed(range(s_max+1)):
        T = [T[i] for i in argsort(val_losses)[0:int(n_i/eta)]]
 ```
 
-Para ver el ejemplo completo ingresa al siguiente <a href="https://github.com/PeepData/hyperband" target="_blank">repositorio</a>.
+Podemos ver el ejemplo completo en el siguiente<a href="https://github.com/PeepData/hyperband" target="_blank">repositorio</a>.
 
-Vale la pena mencionar que existen varias implementaciones robustas para utilizar Hyperdband con todas las ventajas que nos ofrece. Dos que puedo recomendar son las desarrolladas por <a href="https://docs.ray.io/en/master/tune/index.html" target="_blank">Ray Tune</a> y <a href="https://automl.github.io/HpBandSter/ " target="_blank">HpBandSter</a>.
+Vale la pena mencionar que existen varias implementaciones robustas para utilizar Hyperdband con todas las ventajas que nos ofrece. Dos sumamente recomendables son las desarrolladas por <a href="https://docs.ray.io/en/master/tune/index.html" target="_blank">Ray Tune</a> y <a href="https://automl.github.io/HpBandSter/ " target="_blank">HpBandSter</a>.
 
 Además, también disponemos de una implementación para utilizar con <a href="https://github.com/thuijskens/scikit-hyperband" target="_blank">Sklearn</a>.
 
