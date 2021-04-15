@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Hyperparameter optimization con Hyperband y Ray Tune"
+title:  "Hyperparameter optimization con Hyperband"
 description: ""
 author: lzamora
 categories: [ hyperparameter-optimization, machine-learning ]
