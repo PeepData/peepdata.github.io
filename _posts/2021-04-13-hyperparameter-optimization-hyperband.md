@@ -134,7 +134,7 @@ Este algoritmo requerirá de dos entradas:
 Tanto **R** como **η** determinarán los distintos valores para **n** y el presupuesto **r** que se utilizará en cada una de estas. **HB** iniciará con el valor más alto para **n**, maximizando así la exploración, y luego recorrerá los valores más pequeños, protegiendo así, a aquellas configuraciones que requieren de un mayor presupuesto.
 
 
-## Implementacion de Hyperband
+## Implementación de Hyperband
 
 **HB** para poder funcionar requiere de las siguientes funciones:
 + **get_hyperparameter_configuration(n)**: una función que retorna un conjunto **n** de configuraciones muestreadas dada una distribución previamente definida.
