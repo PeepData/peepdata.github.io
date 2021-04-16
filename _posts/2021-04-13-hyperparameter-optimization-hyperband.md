@@ -4,7 +4,7 @@ title:  "Hyperparameter optimization con Hyperband"
 description: ""
 author: lzamora
 categories: [ hyperparameter-optimization, machine-learning ]
-featured: false
+featured: true
 hidden: true
 comments: false
 image: assets/images/2_post_img_1.png
